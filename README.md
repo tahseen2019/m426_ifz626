@@ -1,3 +1,7 @@
+# WISSup::Agile Softwareentwicklung mit Meteor
+
+Grundidee: Chat
+
 # m426_ifz626
 GIT demo
 
