@@ -20,7 +20,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'chats.create'(user) {
+  'chats.create'(user, nameChat) {
 
     // Make sure the user is logged in before inserting a task
     if (! this.userId) {
@@ -31,6 +31,7 @@ Meteor.methods({
       owner: this.userId,
       recipientes: [user],
       username: Meteor.users.findOne(this.userId).username,
+      chatName: nameChat,
     });
 
   },
