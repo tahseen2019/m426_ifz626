@@ -4,7 +4,14 @@ import { check } from 'meteor/check';
 
 export const Chats = new Mongo.Collection('chats');
 
+var myData = {
+              owner: this.userId,
+              recipientes: this.userID,
+              username: Meteor.users.findOne(this.userID),
+              chatName: "Test",
+            }
 
+            Chats.insert(myData);
 
 if (Meteor.isServer) {
   // This code only runs on the server
