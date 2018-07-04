@@ -19,7 +19,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'chats.create'(user, nameChat) {
+  'chatCreate.insert'(user, nameChat) {
     check(user,nameChat, String);
 
     // Make sure the user is logged in before inserting a task
@@ -27,9 +27,9 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     }
 
-  /*  Chats.insert({
+  /* Chats.insert({
       owner: this.userId,
-      recipientes: [user],
+      recipientes: user,
       username: Meteor.users.findOne(this.userId).username,
       chatName: nameChat,
     });*/
