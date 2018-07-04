@@ -8,7 +8,7 @@ import { Messages } from '../api/messages.js';
 import './task.js';
 import './chat.js';
 import './body.html';
-import './messages.js';
+
 
 Template.body.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
