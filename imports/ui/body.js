@@ -49,4 +49,22 @@ Template.body.events({
   'change .hide-completed input'(event, instance) {
     instance.state.set('hideCompleted', event.target.checked);
   },
+   'click button': function(){
+     console.log("You clicked something");
+    // Prevent default browser form submit
+    event.preventDefault();
+
+    // Get value from form element
+    const target = event.target;
+    const user = target.user.value;
+    const nameChat = target.nameChat.value;
+
+    // Insert a task into the collection
+    Meteor.call('chatCreate.insert', user, nameChat);
+    Console.log(Messages.find( { idChat: 1 }).fetch());
+
+    // Clear form
+    target.user.value = '';
+    target.nameChat	.value = '';
+  },
 });
