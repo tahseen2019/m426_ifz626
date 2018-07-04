@@ -4,6 +4,15 @@ import { check } from 'meteor/check';
 
 export const Messages = new Mongo.Collection('messages');
 
+var myData = {
+              idChat: this.idChat,
+              idSender: this.userID,
+              msg: "test",
+              sentAt: new Date(),
+            }
+
+Messages.insert(myData);
+
 Meteor.methods({
   'messages.insert'(text) {
     check(text, String);

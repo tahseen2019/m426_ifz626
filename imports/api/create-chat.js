@@ -19,53 +19,53 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'chats.insert'(text) {
-    check(text, String);
+  'chatCreate.insert'(user, nameChat) {
+    check(user,nameChat, String);
 
     // Make sure the user is logged in before inserting a task
     if (! this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
-    Chats.insert({
-      text,
-      createdAt: new Date(),
+  /* Chats.insert({
       owner: this.userId,
+      recipientes: user,
       username: Meteor.users.findOne(this.userId).username,
-    });
+      chatName: nameChat,
+    });*/
   },
-  'Chats.remove'(taskId) {
-    const task = Chats.findOne(taskId);
+  'Chats.remove'(chatsId) {
+    const task = Chats.findOne(chatsId);
     if (task.private && task.owner !== this.userId) {
       // If the task is private, make sure only the owner can delete it
       throw new Meteor.Error('not-authorized');
     }
 
-    Chats.remove(taskId);
+    Chats.remove(chatsId);
   },
-  'chats.setChecked'(taskId, setChecked) {
-    check(taskId, String);
+  'chats.setChecked'(chatsId, setChecked) {
+    check(chatsId, String);
     check(setChecked, Boolean);
 
-    const task = Chats.findOne(taskId);
+    const task = Chats.findOne(chatsId);
     if (task.private && task.owner !== this.userId) {
       // If the task is private, make sure only the owner can check it off
       throw new Meteor.Error('not-authorized');
     }
 
-    Tasks.update(taskId, { $set: { checked: setChecked } });
+    Tasks.update(chatsId, { $set: { checked: setChecked } });
   },
-  'chats.setPrivate'(taskId, setToPrivate) {
-    check(taskId, String);
+  'chats.setPrivate'(chatsId, setToPrivate) {
+    check(chatsId, String);
     check(setToPrivate, Boolean);
 
-    const task = Chats.findOne(taskId);
+    const task = Chats.findOne(chatsId);
 
     // Make sure only the task owner can make a task private
     if (task.owner !== this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
-    Chats.update(taskId, { $set: { private: setToPrivate } });
+    Chats.update(chatsId, { $set: { private: setToPrivate } });
   },
 });
