@@ -4,19 +4,8 @@ import { check } from 'meteor/check';
 
 export const Messages = new Mongo.Collection('messages');
 
-var myData = {
-              idChat: this.idChat,
-              idSender: this.userID,
-              msg: "test",
-              sentAt: new Date(),
-            }
-
-
-
-Messages.insert(myData);
-
 Meteor.methods({
-  'messages.insert'(chatId, senderId, text, sentAt) {
+  'messages.insert'(text) {
     check(text, String);
 
     // Make sure the user is logged in before inserting a task
@@ -25,10 +14,10 @@ Meteor.methods({
     }
 
     Messages.insert({
-      idChat: chatId,
-      idSender: senderId,
+      idChat: this.idChat,
+      idSender: this.userId,
       msg: text,
-      sentAt: sentAt,
+      sentAt: new Date(),
     });
   },
   'messages.find'(chatId) {
