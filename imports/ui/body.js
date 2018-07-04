@@ -17,12 +17,13 @@ Template.body.onCreated(function bodyOnCreated() {
 
 
 Template.body.events({
-  'submit .new-task'(event) {
+  'submit .new-message'(event) {
     // Prevent default browser form submit
+
     event.preventDefault();
 
 
-    console.log("submit .new-message");
+    console.log("submit .new-messages");
 
     // Get value from form element
     const target = event.target;
