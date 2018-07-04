@@ -6,6 +6,7 @@ import { Tasks } from '../api/tasks.js';
 import { Messages } from '../api/messages.js';
 
 import './task.js';
+import './chat.js';
 import './body.html';
 import './messages.js';
 

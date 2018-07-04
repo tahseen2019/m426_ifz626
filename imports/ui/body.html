@@ -1,3 +1,4 @@
+
 <body>
   <div class="container">
     <header>
@@ -11,6 +12,31 @@
       {{> loginButtons}}
 
       {{#if currentUser}}
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Chats</h2>
+          <ul>
+           {{#each chats}}
+             {{> chat}}
+           {{/each}}
+          </ul>
+          <form class="chat-erstellen">
+            <div class="row">
+            <input type="text" name="chat-create" placeholder="chat erstellen"/>
+            <button class="w3-button w3-xlarge w3-circle w3-teal">+</button>
+          </div>
+          </form>
+        </div>
+
+        <div class="col-md-8">
+          <h2>Messages</h2>
+          <ul>
+          {{#each messages}}
+            {{> message}}
+          {{/each}}
+        </ul>
+        </div>
+      </div>
         <form class="new-task">
           <input type="text" name="text" placeholder="Type to add new tasks" />
         </form>
