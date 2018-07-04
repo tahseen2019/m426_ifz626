@@ -12,12 +12,12 @@ Template.chat.helpers({
 Template.chat.events({
   'click .toggle-checked'() {
     // Set the checked property to the opposite of its current value
-    Meteor.call('chats.setChecked', this._id, !this.checked);
+    Meteor.call('chatCreate.setChecked', this._id, !this.checked);
   },
   'click .delete'() {
-    Meteor.call('chats.remove', this._id);
+    Meteor.call('chatCreate.remove', this._id);
   },
   'click .toggle-private'() {
-    Meteor.call('chats.setPrivate', this._id, !this.private);
+    Meteor.call('chatCreate.setPrivate', this._id, !this.private);
   },
 });
