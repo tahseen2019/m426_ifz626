@@ -1,14 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
-import 'chats.js';
+import 'chats/chat.js';
 
 
 
 if (Meteor.isServer) {
   // This code only runs on the server
   // Only publish tasks that are public or belong to the current user
-  Meteor.publish('chats', function tasksPublication() {
+  Meteor.publish('chatCreate', function tasksPublication() {
     return Chats.find({
       $or: [
         { private: { $ne: true } },
@@ -21,18 +21,20 @@ if (Meteor.isServer) {
 Meteor.methods({
   'chatCreate.insert'(user, nameChat) {
     check(user,nameChat, String);
+    console.log("test");
+    console.log(chatCreate);
 
     // Make sure the user is logged in before inserting a task
     if (! this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
-  /* Chats.insert({
+   Chats.insert({
       owner: this.userId,
       recipientes: user,
       username: Meteor.users.findOne(this.userId).username,
       chatName: nameChat,
-    });*/
+    });
   },
   'Chats.remove'(chatsId) {
     const task = Chats.findOne(chatsId);
