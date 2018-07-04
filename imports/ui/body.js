@@ -39,9 +39,17 @@ Template.body.events({
     const target = event.target;
     const text = target.text.value;
 
+    var myData = {
+                  idChat: this.idChat,
+                  idSender: this.userID,
+                  msg: text,
+                  sentAt: new Date(),
+                }
+
     // Insert a task into the collection
-    Meteor.call('tasks.insert', text);
-    Console.log(Messages.find( { idChat: 1 }).fetch());
+    Messages.insert(myData);
+
+
 
     // Clear form
     target.text.value = '';

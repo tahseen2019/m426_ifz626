@@ -11,8 +11,6 @@ var myData = {
               sentAt: new Date(),
             }
 
-
-
 Messages.insert(myData);
 
 Meteor.methods({
