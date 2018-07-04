@@ -3,9 +3,11 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { Tasks } from '../api/tasks.js';
+import { Messages } from '../api/messages.js';
 
 import './task.js';
 import './body.html';
+import './messages.js';
 
 Template.body.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
@@ -38,6 +40,7 @@ Template.body.events({
 
     // Insert a task into the collection
     Meteor.call('tasks.insert', text);
+    Console.log(Messages.find( { idChat: 1 }).fetch());
 
     // Clear form
     target.text.value = '';
