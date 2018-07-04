@@ -24,10 +24,12 @@ Meteor.methods({
   },
   'messages.find'(chatId) {
     // Make sure the user is logged in before inserting a task
+    console.log("Messages: entered messages.find, Param: " + chatId);
     if (! this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
-    Messages.find( { idChat: chatId } );
+    console.log(Messages.find( { idChat: chatId }, {sort: {sentAt: -1}}).fetch());
+
   },
 });
